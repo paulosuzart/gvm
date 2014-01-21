@@ -1,4 +1,4 @@
-# == Define: gvm::gvm_packages
+# == Define: gvm::gvm_package
 #
 # Setups GVM packages and set their
 

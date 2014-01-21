@@ -1,3 +1,12 @@
+# == Define: gvm
+#
+# Setup GVM 
+
+# === Parameters
+#
+# [*owner*]
+# The user that owns package. This is use to infer where to install GVM: /home/$owner/.gvm
+
 class gvm ($owner) {
    #TODO, should require java somehow
     $user_home = "/home/$owner"
