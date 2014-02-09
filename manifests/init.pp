@@ -5,11 +5,16 @@
 # === Parameters
 #
 # [*owner*]
-# The user that owns package. This is use to infer where to install GVM: /home/$owner/.gvm
+# The user that owns package. This is use to infer where to install GVM: /home/$owner/.gvm or /root 
+# if user is root
 
 class gvm ($owner) {
-   #TODO, should require java somehow
-    $user_home = "/home/$owner"
+
+    $user_home = $owner ? {
+      'root' =>  '/root',
+      default => "/home/$owner"      
+    }
+
     wget::fetch {'http://get.gvmtool.net':,
       destination => "/tmp/gvm-install.sh",
       verbose     => true,
@@ -30,5 +35,4 @@ class gvm ($owner) {
       group  => $owner,
       source => "puppet:///modules/gvm/gvm_config"
     }
-   
 }
