@@ -8,7 +8,7 @@
 # The user that owns package. This is use to infer where to install GVM: /home/$owner/.gvm or /root 
 # if user is root
 
-class gvm ($owner) {
+class gvm ($owner = 'root') {
 
     $user_home = $owner ? {
       'root' =>  '/root',

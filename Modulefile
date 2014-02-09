@@ -1,5 +1,5 @@
 name 'paulosuzart-gvm'
-version '0.0.2'
+version '1.0.0'
 dependency 'maestrodev/wget', '1.3.1'
 description "Installs GVM and any package supported by it"
 license 'Apache License 2.0'
