@@ -29,11 +29,13 @@ To install packages simply do:
    
 To remove packages use the extra argument `package_name` (defaults to `name`) like this:
 
+````puppet
   gvm::package { 'remove grails 2.0.1':
     package_name => 'grails',
     version   => '2.0.1',
     ensure    => absent,
   }
+````
 
 Limitations
 -----------
