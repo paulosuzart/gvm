@@ -44,7 +44,7 @@ define gvm::package (
     require      => Class['gvm'],
     path         => "/usr/bin:/usr/sbin:/bin",
     logoutput    => true,
-	timeout      => $timeout
+    timeout      => $timeout
   }
   
   if $ensure == present and $is_default {
@@ -56,7 +56,7 @@ define gvm::package (
       logoutput   => true,
       require     => Exec["gvm install $package_name $version"],
       unless      => "test \"$version\" = \$(find $user_home/.gvm/$package_name -type l -printf '%p -> %l\\n'| awk '{print \$3}' | awk -F'/' '{print \$NF}')",
-	  timeout      => $timeout
+      timeout      => $timeout
     }
   }
     
