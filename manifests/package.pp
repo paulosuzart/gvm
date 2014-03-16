@@ -47,7 +47,7 @@ define gvm::package (
       
   if $ensure == present and $is_default {
     exec {"gvm default $package_name $version" :
-      environment => "HOME=$user_home",
+      environment => "HOME=$gvm::user_home",
       command     => "bash -c '$gvm_init && gvm default $package_name $version'",
       user        => $owner,
       path        => '/usr/bin:/usr/sbin:/bin',
