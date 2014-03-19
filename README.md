@@ -37,9 +37,12 @@ To remove packages use the extra argument `package_name` (defaults to `name`) li
   }
 ````
 
+*It is required `Package['unzip']` declared somewhere in your manifests.*
+
 Limitations
 -----------
 Tested and mostly built to run with Ubuntu/Debian. Futher versions should add suport for **Mac** and other distributions.
+
 
 Release Notes
 -------------
