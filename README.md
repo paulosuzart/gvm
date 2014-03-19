@@ -8,7 +8,7 @@ Usage
 
 ````puppet
     class { 'gvm' :
-      owner => 'paulosuzart',
+      owner => 'someuser',
     }
 ````
 
@@ -43,9 +43,18 @@ Tested and mostly built to run with Ubuntu/Debian. Futher versions should add su
 
 Release Notes
 -------------
+Notes for release 1.0.1
 
-Notes for release 1.0.0
+  - Timeout parameter added to gvm::package.
+  - User fix. GVM installation condition changed. Ensuer file added.
+  - Fixed wrong HOME environment variable while installing a package.
 
-    * Added support for `root` user if you want to use this package in your server.
-    * Added ability to remove gvm packages
+With special thanks to [Athlan](https://github.com/athlan) contribution.
+
+
+
+Notes for release 1.0.0 
+
+  - Added support for `root` user if you want to use this package in your server.
+  - Added ability to remove gvm packages
 

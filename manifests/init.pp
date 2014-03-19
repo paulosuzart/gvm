@@ -28,7 +28,8 @@ class gvm ($owner = 'root') {
       command     => "bash gvm-install.sh",
       cwd         => '/tmp',
       logoutput   => true,
-      unless      => 'test -e $HOME/.gvm' # this is a weak test to prevent gvm to always run
+      unless      => 'test -e $HOME/.gvm',
+      require     => Package['unzip'],
     } ~>
     file {"$user_home/.gvm/etc/config" :
       ensure => file,
