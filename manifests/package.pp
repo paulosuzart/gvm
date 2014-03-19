@@ -21,6 +21,7 @@ define gvm::package (
   $version,
   $is_default   = false,
   $ensure       = present,
+  $timeout      = 0 # disabled by default instead of 300 seconds defined by Puppet
 ) {
 
   $gvm_init = "source $gvm::user_home/.gvm/bin/gvm-init.sh"
@@ -42,18 +43,20 @@ define gvm::package (
     user         => $owner,
     require      => Class['gvm'],
     path         => "/usr/bin:/usr/sbin:/bin",
-    logoutput    => true
+    logoutput    => true,
+    timeout      => $timeout
   }
-      
+  
   if $ensure == present and $is_default {
     exec {"gvm default $package_name $version" :
-      environment => "HOME=$user_home",
+      environment => "HOME=$gvm::user_home",
       command     => "bash -c '$gvm_init && gvm default $package_name $version'",
       user        => $owner,
       path        => '/usr/bin:/usr/sbin:/bin',
       logoutput   => true,
       require     => Exec["gvm install $package_name $version"],
-      unless      => "test \"$version\" = \$(find $user_home/.gvm/$package_name -type l -printf '%p -> %l\\n'| awk '{print \$3}' | awk -F'/' '{print \$NF}')"
+      unless      => "test \"$version\" = \$(find $user_home/.gvm/$package_name -type l -printf '%p -> %l\\n'| awk '{print \$3}' | awk -F'/' '{print \$NF}')",
+      timeout      => $timeout
     }
   }
     

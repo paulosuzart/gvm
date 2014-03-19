@@ -22,15 +22,16 @@ class gvm ($owner = 'root') {
       user        => $owner,
     } ~>
     exec { 'GVM' :
-      user        => $user_name,
+      user        => $owner,
       environment => "HOME=$user_home",
       path        => "/usr/bin:/usr/sbin:/bin",
       command     => "bash gvm-install.sh",
       cwd         => '/tmp',
       logoutput   => true,
-      onlyif      => 'echo $PATH |grep -c gvm' #this is a weak test to prevent gvm to always run
+      unless      => 'test -e $HOME/.gvm' # this is a weak test to prevent gvm to always run
     } ~>
     file {"$user_home/.gvm/etc/config" :
+      ensure => file,
       owner  => $owner,
       group  => $owner,
       source => "puppet:///modules/gvm/gvm_config"
