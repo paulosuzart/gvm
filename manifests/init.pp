@@ -1,18 +1,27 @@
 # == Define: gvm
 #
-# Setup GVM 
+# Setup GVM
 
 # === Parameters
 #
 # [*owner*]
-# The user that owns package. This is use to infer where to install GVM: /home/$owner/.gvm or /root 
-# if user is root
+# The user that owns package. If homedir is not specified, this is used to infer where to install GVM:
+# /home/$owner/.gvm or /root if user is root
+#
+# [*homedir*]
+# The owner's home directory.  This can be omitted if the home directory is /root or /home/$owner
 
-class gvm ($owner = 'root') {
+class gvm (
+    $owner = 'root',
+    $homedir = '',
+) {
 
-    $user_home = $owner ? {
-      'root' =>  '/root',
-      default => "/home/$owner"      
+    $user_home = $homedir ? {
+      '' => $owner ? {
+        'root' =>  '/root',
+        default => "/home/$owner"
+      },
+      default => $homedir
     }
 
     wget::fetch {'http://get.gvmtool.net':,
