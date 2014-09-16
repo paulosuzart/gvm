@@ -5,16 +5,25 @@
 # === Parameters
 #
 # [*owner*]
-# The user that owns package. If homedir is not specified, this is used to infer where to install GVM:
+# The user that owns the package. If homedir is not specified, this is used to infer where to install GVM:
 # /home/$owner/.gvm or /root if user is root
+#
+# [*group*]
+# The group that owns the package.  Defaults to be the same as $owner, if unspecified.
 #
 # [*homedir*]
 # The owner's home directory.  This can be omitted if the home directory is /root or /home/$owner
 
 class gvm (
     $owner = 'root',
+    $group = '',
     $homedir = '',
 ) {
+
+    $user_group = $group ? {
+      '' => $owner,
+      default => $group
+    }
 
     $user_home = $homedir ? {
       '' => $owner ? {
@@ -43,7 +52,7 @@ class gvm (
     file {"$user_home/.gvm/etc/config" :
       ensure => file,
       owner  => $owner,
-      group  => $owner,
+      group  => $user_group,
       source => "puppet:///modules/gvm/gvm_config"
     }
 }

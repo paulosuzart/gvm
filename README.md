@@ -8,12 +8,14 @@ Usage
 
 ````puppet
     class { 'gvm' :
-      owner => 'someuser',
+      owner   => 'someuser',
+      group   => 'g_someser',
       homedir => '/apps/someuser',
     }
 ````
 
    - `owner` is the user name that will own the installation. From it the home of the user is assumed to be `/home/$owner`, or `/root` if the provided user is `root`. Defaults to `root`.
+   - `group` is the group name of the owner.  Defaults to `$owner`.
    - `homedir` is the home directory of the owner.  This can be omitted if the home directory is `/root` or `/home/$owner`.
 
 To install packages simply do:
