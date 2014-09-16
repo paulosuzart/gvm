@@ -9,7 +9,7 @@ Usage
 ````puppet
     class { 'gvm' :
       owner   => 'someuser',
-      group   => 'g_someser',
+      group   => 'g_someuser',
       homedir => '/apps/someuser',
     }
 ````
