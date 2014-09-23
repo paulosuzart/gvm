@@ -50,6 +50,15 @@ Tested and mostly built to run with Ubuntu/Debian. Futher versions should add su
 
 Release Notes
 -------------
+Notes for release 1.1.0
+
+   - Parameterize homedir for non-standard directories
+   - Parameterize group name
+   - Fix typo
+
+With special thanks to [joedj](https://github.com/joedj) contribution.
+
+
 Notes for release 1.0.1
 
   - Timeout parameter added to gvm::package.
