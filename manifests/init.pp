@@ -18,6 +18,7 @@ class gvm (
     $owner = 'root',
     $group = '',
     $homedir = '',
+    $java_home = ''
 ) {
 
     $user_group = $group ? {
@@ -41,7 +42,7 @@ class gvm (
     } ~>
     exec { 'GVM' :
       user        => $owner,
-      environment => "HOME=$user_home",
+      environment => ["HOME=$user_home", "JAVA_HOME=$java_home"],
       path        => "/usr/bin:/usr/sbin:/bin",
       command     => "bash gvm-install.sh",
       cwd         => '/tmp',
