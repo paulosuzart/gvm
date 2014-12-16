@@ -37,7 +37,7 @@ define gvm::package (
   }
 
   exec { "gvm $gvm_operation $package_name $version" :
-    environment => ["HOME=$gvm::user_home", "JAVA_HOME=$gvm::java_home"],
+    environment => $gvm::base_env,
     command      => "bash -c '$gvm_init && gvm $gvm_operation $package_name $version'",
     unless       => $gvm_operation_unless,
     user         => $owner,
@@ -49,7 +49,7 @@ define gvm::package (
   
   if $ensure == present and $is_default {
     exec {"gvm default $package_name $version" :
-      environment => ["HOME=$gvm::user_home", "JAVA_HOME=$gvm::java_home"],
+      environment => $gvm::base_env,
       command     => "bash -c '$gvm_init && gvm default $package_name $version'",
       user        => $owner,
       path        => '/usr/bin:/usr/sbin:/bin',

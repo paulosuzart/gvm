@@ -33,6 +33,12 @@ class gvm (
       },
       default => $homedir
     }
+    
+    $home_env = "HOME=$user_home"
+    $base_env = $java_home ? {
+        ''      => [$home_env], 
+        default => [$home_env, "JAVA_HOME=$java_home"]
+    }
 
     wget::fetch {'http://get.gvmtool.net':,
       destination => "/tmp/gvm-install.sh",
@@ -42,7 +48,7 @@ class gvm (
     } ~>
     exec { 'GVM' :
       user        => $owner,
-      environment => ["HOME=$user_home", "JAVA_HOME=$java_home"],
+      environment => $base_env, 
       path        => "/usr/bin:/usr/sbin:/bin",
       command     => "bash gvm-install.sh",
       cwd         => '/tmp',
