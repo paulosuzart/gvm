@@ -50,6 +50,14 @@ Tested and mostly built to run with Ubuntu/Debian. Futher versions should add su
 
 Release Notes
 -------------
+
+Notes for release 1.2.1
+
+   - Allow passing of Java Home to GVM commands
+   - Don't mess with JAVA_HOME unless it's specified
+
+With special thanks to [rickab](https://github.com/rickcab) contribution.
+
 Notes for release 1.1.0
 
    - Parameterize homedir for non-standard directories
