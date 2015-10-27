@@ -51,6 +51,12 @@ Tested and mostly built to run with Ubuntu/Debian. Futher versions should add su
 Release Notes
 -------------
 
+Notes for release 1.2.2
+
+   - Fixed `owner` variable lookup
+
+With special thanks to [pingram3030](https://github.com/pingram3030)
+
 Notes for release 1.2.1
 
    - Allow passing of Java Home to GVM commands
@@ -81,4 +87,3 @@ Notes for release 1.0.0
 
   - Added support for `root` user if you want to use this package in your server.
   - Added ability to remove gvm packages
-
