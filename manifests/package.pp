@@ -40,7 +40,7 @@ define gvm::package (
     environment => $gvm::base_env,
     command      => "bash -c '$gvm_init && gvm $gvm_operation $package_name $version'",
     unless       => $gvm_operation_unless,
-    user         => $owner,
+    user         => $gvm::owner,
     require      => Class['gvm'],
     path         => "/usr/bin:/usr/sbin:/bin",
     logoutput    => true,
@@ -51,7 +51,7 @@ define gvm::package (
     exec {"gvm default $package_name $version" :
       environment => $gvm::base_env,
       command     => "bash -c '$gvm_init && gvm default $package_name $version'",
-      user        => $owner,
+      user        => $gvm::owner,
       path        => '/usr/bin:/usr/sbin:/bin',
       logoutput   => true,
       require     => Exec["gvm install $package_name $version"],
