@@ -1,3 +1,5 @@
+**Deprecated**: Please refer to [paulosuzart/sdkman](https://forge.puppetlabs.com/paulosuzart/sdkman)
+
 paulosuzart/gvm
 ---------------
 
